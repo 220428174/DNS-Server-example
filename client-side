@@ -1,16 +1,20 @@
 import socket
 hostname = socket.gethostname()
 ipaddr = "127.0.2.1"
+
 svsock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 address = (ipaddr, 3388)
+
 cans = "YES"
 while cans.upper() == "YES":
-svsock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-req_domain = input("Please enter the website you are looking for; ")
-send = svsock.sendto(req_domain.encode(), address)
-data, address = svsock.recvfrom(3388)
-reply_ip = data.decode().strip()
-print(f"The ip for the website {req_domain}:{reply_ip}")
-cans = (input("Wish to Continue? (YES/NO) "
-" || CAPITALS ONLY || : "))
-svsock.close()
+  svsock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+  req_domain = input("Please enter the website you are looking for; ")
+
+  send = svsock.sendto(req_domain.encode(), address)
+  data, address = svsock.recvfrom(3388)
+  reply_ip = data.decode().strip()
+
+  print(f"The ip for the website {req_domain}:{reply_ip}")
+  cans = (input("Wish to Continue? (YES/NO) "
+  " || CAPITALS ONLY || : "))
+  svsock.close()
